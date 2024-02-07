@@ -1,3 +1,2 @@
-# FastAPI-Tutorial
-
-Document status: On going
+# Fast API tutorial
+- branch: `sample_structure`: sample structure of Fast API project
