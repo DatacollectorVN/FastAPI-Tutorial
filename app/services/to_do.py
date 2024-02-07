@@ -46,4 +46,4 @@ async def create_todos(
 ):
     background_tasks.add_task(bg_create_todos, texts, is_completes)
     
-    return "Task in run in background"
+    return {"Message": "Task in run in background"}
