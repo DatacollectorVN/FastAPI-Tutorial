@@ -3,9 +3,11 @@ from fastapi.routing import APIRoute, APIRouter
 import uvicorn
 import time
 from fastapi.responses import HTMLResponse
+from utils.custom_logger import logger
 
 # Import route services
 from services import to_do
+from services import user_onboarding
 
 app = FastAPI(
     title= "FastAPI Tutorial",
@@ -37,7 +39,9 @@ async def read_items():
     """
 
 # app include router of service
+app.include_router(user_onboarding.router)
 app.include_router(to_do.router)
 
 if __name__ == "__main__":
+    logger.info("[main]: Start app")
     uvicorn.run(app, host = "0.0.0.0", port = 8000)

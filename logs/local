@@ -1,0 +1,31 @@
+[02-14 09:43:41][INFO][main]: Start app
+[02-14 09:45:13][INFO][main]: Start app
+[02-14 09:45:16][ERROR][user_onboarding][create_user]: 'itemss' is an invalid keyword argument for ToDoItem
+[02-14 09:45:53][ERROR][user_onboarding][create_user]: 'itemss' is an invalid keyword argument for ToDoItem
+[02-14 09:46:29][INFO][main]: Start app
+[02-14 09:46:31][ERROR][user_onboarding][create_user]: 'itemss' is an invalid keyword argument for ToDoItem
+[02-14 09:46:52][INFO][main]: Start app
+[02-14 09:47:09][ERROR][user_onboarding][create_user]: 'itemss' is an invalid keyword argument for ToDoItem
+[02-14 09:49:37][INFO][main]: Start app
+[02-14 09:49:51][ERROR][user_onboarding][create_user]: 'SessionTransaction' object has no attribute 'add'
+[02-14 09:50:37][INFO][main]: Start app
+[02-14 09:50:40][ERROR][user_onboarding][create_user]: 'SessionTransaction' object has no attribute 'add'
+[02-14 09:50:48][INFO][main]: Start app
+[02-14 09:50:49][ERROR][user_onboarding][create_user]: 'SessionTransaction' object has no attribute 'add'
+[02-14 09:54:33][INFO][main]: Start app
+[02-14 09:54:39][ERROR][user_onboarding][create_user]: 'SessionTransaction' object has no attribute 'add'
+[02-14 10:04:08][INFO][main]: Start app
+[02-14 10:04:12][ERROR][user_onboarding][create_user]: 'itemss' is an invalid keyword argument for ToDoItem
+[02-14 10:04:23][INFO][main]: Start app
+[02-14 10:04:25][ERROR][user_onboarding][create_user]: 'itemss' is an invalid keyword argument for ToDoItem
+[02-14 10:08:13][INFO][main]: Start app
+[02-14 10:09:18][INFO][main]: Start app
+[02-14 10:09:40][INFO][main]: Start app
+[02-14 10:09:53][INFO][main]: Start app
+[02-14 10:11:32][INFO][main]: Start app
+[02-14 10:11:34][ERROR][user_onboarding][create_user]: 'itemss' is an invalid keyword argument for ToDoItem
+[02-14 10:11:56][INFO][main]: Start app
+[02-14 10:12:17][ERROR][user_onboarding][create_user]: 'itemss' is an invalid keyword argument for ToDoItem
+[02-14 11:21:15][INFO][main]: Start app
+[02-14 11:22:27][ERROR][user_onboarding][create_user]: 'CreateToDo' object has no attribute 'item'
+[02-14 11:26:09][INFO][main]: Start app

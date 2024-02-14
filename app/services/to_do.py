@@ -1,49 +1,46 @@
-from database.connections import session
-from background_tasks.to_do import bg_create_todos
-from typing import Annotated
+from database.connections import sessions
+from pydantic import BaseModel
 from typing import List
-from fastapi import APIRouter, Query, BackgroundTasks
-from models.sqlite.todo import ToDo
+from utils.custom_logger import logger
+from fastapi import APIRouter, Query, HTTPException
+
+# Import models
+from models import postgresql
 
 router = APIRouter()
 
-@router.get("/toDo/getAllToDo")
-async def get_all_todos():
-    todos_query = session.query(ToDo)
-    return todos_query.all()
+router = APIRouter()
 
-@router.post("/toDo/createToDo")
-async def create_todo(
-    text: Annotated[str, 
-        Query(description = "Content in to do list")
-    ], 
-    is_complete: bool = False
-):
-    todo = ToDo(text = text, is_done = is_complete)
-    session.add(todo)
-    session.commit()
-    return {"todo added": todo.text}
+BASE_URL = "/toDo"
 
-@router.post("/toDo/update/{id}")
-async def update_todo(
-    id: int,
-    new_text: str = "",
-    is_complete: bool = False,
-):
-    todo_query = session.query(ToDo).filter(ToDo.id == id)
-    todo = todo_query.first()
-    if new_text:
-        todo.text = new_text
-    todo.is_done = is_complete
-    session.add(todo)
-    session.commit()
 
-@router.post("/toDo/simulationBackGroundTask")
-async def create_todos(
-    background_tasks: BackgroundTasks,
-    texts: List[str],
-    is_completes: List[bool]
-):
-    background_tasks.add_task(bg_create_todos, texts, is_completes)
+class CreateToDo(BaseModel):
+    topic: str
+    user_id: int
+    items: List[str]
+
+@router.post(BASE_URL + "/createToDo")
+async def create_to_do(items: CreateToDo):
+    try:
+        
+        to_do_list = postgresql.ToDoList(topic = items.topic, user_id = items.user_id)
+        sessions["postgresql"].add(to_do_list)
+        sessions["postgresql"].flush()
+
+        for item in items.items:
+            to_do_item = postgresql.ToDoItem(item = item, to_do_list_id = to_do_list.id)
+            sessions["postgresql"].add(to_do_item)
+        
+        sessions["postgresql"].commit()
+
+        return {"message": "To Do created successfully"}
     
-    return {"Message": "Task in run in background"}
+    except Exception as e:
+        sessions["postgresql"].rollback()
+        logger.error(f"[user_onboarding][create_user]: {e}")
+        raise HTTPException(status_code = 500, detail = "Internal server error")
+
+
+@router.post(BASE_URL + "/getTopicsByUserId")
+async def getTopicsByUserId(items: CreateToDo):
+    pass
